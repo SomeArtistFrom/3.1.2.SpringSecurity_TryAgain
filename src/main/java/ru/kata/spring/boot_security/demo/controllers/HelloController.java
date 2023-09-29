@@ -1,9 +1,12 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.kata.spring.boot_security.demo.security.UserMyDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,13 @@ public class HelloController {
         messages.add("I am first Spring Security application");
         messages.add(unicodeDance + unicodeSmile + unicodeDance);
         model.addAttribute("messages", messages);
-        return "index2";
+        return "hello";
+    }
+    @GetMapping("/showUserInfo")
+    public String showUserInfo(){
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        UserMyDetails userMyDetails= (UserMyDetails)authentication.getPrincipal();
+        System.out.println(userMyDetails.getUser());
+        return "hello";
     }
 }
