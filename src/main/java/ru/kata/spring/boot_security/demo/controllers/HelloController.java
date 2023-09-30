@@ -12,10 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
 public class HelloController {
 
-    @GetMapping()
+    @GetMapping("/index")
     public String printWelcome(ModelMap model) {
         List<String> messages = new ArrayList<>();
         String unicodeSmile = "\uD83D\uDE0A";
@@ -24,13 +23,13 @@ public class HelloController {
         messages.add("I am first Spring Security application");
         messages.add(unicodeDance + unicodeSmile + unicodeDance);
         model.addAttribute("messages", messages);
-        return "hello";
+        return "index";
     }
     @GetMapping("/showUserInfo")
     public String showUserInfo(){
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         UserMyDetails userMyDetails= (UserMyDetails)authentication.getPrincipal();
         System.out.println(userMyDetails.getUser());
-        return "hello";
+        return "index";
     }
 }

@@ -8,15 +8,17 @@
 
 <form name="f" th:method="post" th:action="@{/process_login}">
 
-    <label for="username">Enter name: </label>
-    <input type="text" name="*{username}" id="username"/>
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+
+    <label for="username">Введите имя: </label>
+    <input type="text" name="username" id="username"/>
     <!--    <div style="color:orangered"-->
     <!--         th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error-->
     <!--    </div>-->
 
     <br/>
 
-    <label for="password">Enter password: </label>
+    <label for="password">Введите пароль: </label>
     <input type="password" name="password" id="password"/>
     <!--    <div style="color:orangered"-->
     <!--         th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error-->
@@ -27,7 +29,7 @@
     <input type="submit" value="Login"/>
     <div style="color:maroon"
          th:if="${param.error}">
-        Wrong name or password
+        Неправильные имя или пароль
     </div>
 
 </form>
